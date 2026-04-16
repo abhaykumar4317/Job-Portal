@@ -65,6 +65,23 @@
   color: white;
 }
 
+.wmde-markdown,
+.wmde-markdown-var {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+.wmde-markdown p,
+.wmde-markdown li,
+.wmde-markdown h1,
+.wmde-markdown h2,
+.wmde-markdown h3,
+.wmde-markdown h4,
+.wmde-markdown h5,
+.wmde-markdown h6 {
+  color: inherit !important;
+}
+
 @layer base {
   * {
     @apply border-border;

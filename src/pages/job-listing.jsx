@@ -15,6 +15,7 @@ const JobListing = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [location, setLocation] = useState("ALL");
   const [company_id, setCompany_id] = useState("ALL");
+  const [hiringStatus, setHiringStatus] = useState("ALL");
   const { isLoaded } = useUser();
   
  const {
@@ -25,6 +26,7 @@ const JobListing = () => {
     location,
     company_id,
     searchQuery,
+   isOpen: hiringStatus,
  });
 
   const {fn:fnCompanies,data:companies} = useFetch(getCompanies);
@@ -36,7 +38,7 @@ const JobListing = () => {
 
  useEffect(()=>{
    if(isLoaded) fnJobs();
- }, [isLoaded,location,company_id,searchQuery]);
+ }, [isLoaded,location,company_id,searchQuery,hiringStatus]);
 
  const handleSearch = (e) => {
   e.preventDefault();
@@ -50,8 +52,9 @@ const JobListing = () => {
 
  const clearFilters = ()=>{
   setSearchQuery("");
-  setLocation("");
-  setCompany_id("");
+  setLocation("ALL");
+  setCompany_id("ALL");
+  setHiringStatus("ALL");
 
  };
 
@@ -118,6 +121,20 @@ if(!isLoaded){
         </SelectGroup>
       </SelectContent>
     </Select>
+
+    <Select value={hiringStatus} onValueChange={(value)=>setHiringStatus(value)}>
+      <SelectTrigger>
+        <SelectValue placeholder="Filter by Hiring Status" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectItem value="ALL">All status</SelectItem>
+          <SelectItem value="open">Open</SelectItem>
+          <SelectItem value="closed">Closed</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+
     <Button onClick={clearFilters} variant="destructive" className="sm:w-1/2">
     Clear Filters
     </Button>
