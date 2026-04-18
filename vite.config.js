@@ -13,6 +13,5 @@ export default defineConfig({
 
   server: {
     historyApiFallback: true,
-    allowedHosts: ["harmful-curled-glimpse.ngrok-free.dev"],
   },
 })
